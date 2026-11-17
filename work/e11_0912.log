@@ -1,0 +1,27 @@
+特征准备 6s；验证集负荷特征缺失率 0.000
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 base       fit   107s  pinball=0.04889  cov=0.843  oracle A=66.99 B=66.81 ME=66.81 (meanT=236.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 load       fit   107s  pinball=0.04853  cov=0.850  oracle A=68.10 B=67.93 ME=67.93 (meanT=237.9 meanY=170.0) pen_on=0.00 pen_sev=0.18
+   新特征增益占比 18.9%： ld_ch_rel3 2.0，ld_ch_n1 1.9，ld_car_rel3 1.9，ld_car_n1 1.8，ld_wa_rel3 1.7，ld_ch_rel1 1.7
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 dest       fit   102s  pinball=0.04896  cov=0.837  oracle A=66.71 B=66.53 ME=66.53 (meanT=236.5 meanY=170.0) pen_on=0.00 pen_sev=0.18
+   新特征增益占比 5.9%： rc_cp_base 3.0，rc_cp_n7 0.7，rc_cp_d7 0.5，rc_cp_wh7 0.4，rc_cp_d3 0.4，rc_cp_mid7 0.3
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 both       fit   117s  pinball=0.04846  cov=0.845  oracle A=67.24 B=67.06 ME=67.06 (meanT=237.0 meanY=170.0) pen_on=0.00 pen_sev=0.18
+   新特征增益占比 23.3%： rc_cp_base 2.8，ld_ch_n1 2.0，ld_car_n1 1.8，ld_car_rel3 1.8，ld_ch_rel3 1.7，ld_ch_rel1 1.6
+特征准备 2s；验证集负荷特征缺失率 0.000
+09-12 loadrel    fit   104s  pinball=0.04907  cov=0.848  oracle A=68.54 B=68.36 ME=68.36 (meanT=238.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+   新特征增益占比 15.2%： ld_car_rel3 2.3，ld_ch_rel3 2.3，ld_ch_rel1 2.2，ld_wa_rel3 2.2，ld_car_rel1 1.7，ld_wa_rel1 1.7

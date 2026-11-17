@@ -1,0 +1,9 @@
+09-12 xgb        fit   317s  pinball=0.04833  cov=0.856  oracle A=68.03 B=67.85 ME=67.85 (meanT=237.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+0:	learn: 0.0643447	total: 1.13s	remaining: 28m 14s
+250:	learn: 0.0429188	total: 4m 18s	remaining: 21m 27s
+500:	learn: 0.0418599	total: 8m 51s	remaining: 17m 39s
+750:	learn: 0.0412870	total: 13m 17s	remaining: 13m 15s
+1000:	learn: 0.0409239	total: 17m 54s	remaining: 8m 55s
+1250:	learn: 0.0406346	total: 22m 46s	remaining: 4m 31s
+1499:	learn: 0.0404251	total: 27m 36s	remaining: 0us
+09-12 cb         fit  1671s  pinball=0.04918  cov=0.843  oracle A=67.84 B=67.66 ME=67.66 (meanT=237.6 meanY=170.0) pen_on=0.00 pen_sev=0.18

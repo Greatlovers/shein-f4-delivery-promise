@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>F4 包裹何时到 · 方案报告</title>
+<style>
+  @page { size: A4; margin: 13mm 14mm 13mm 14mm; }
+  :root { --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --acc:#2563eb; --acc2:#0d9488; --warn:#dc2626; --bg2:#f8fafc; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; color: var(--ink); font-size: 9.3pt; line-height: 1.55; margin: 0; background:#fff; }
+  .page { page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; }
+  h1 { font-size: 15pt; margin: 0 0 2mm; letter-spacing: .5px; }
+  h2 { font-size: 11.5pt; margin: 4mm 0 1.6mm; padding-bottom: 1mm; border-bottom: 1.5px solid var(--ink); }
+  h3 { font-size: 10pt; margin: 3mm 0 1mm; color: var(--acc); }
+  p { margin: 1mm 0 1.6mm; text-align: justify; }
+  .sub { color: var(--muted); font-size: 8.4pt; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5mm 0 2mm; font-size: 8.5pt; }
+  th, td { border: 1px solid var(--line); padding: 1.1mm 1.6mm; vertical-align: top; text-align: left; }
+  th { background: var(--bg2); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .kv td:first-child { width: 22%; background: var(--bg2); font-weight: 600; }
+  .box { border: 1px solid var(--line); border-left: 3px solid var(--acc); background: var(--bg2); padding: 2mm 3mm; margin: 2mm 0; }
+  .box.warn { border-left-color: var(--warn); }
+  .box.ok { border-left-color: var(--acc2); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  figure { margin: 1.5mm 0 2mm; text-align: center; }
+  figure img { width: 100%; }
+  figcaption { font-size: 8pt; color: var(--muted); margin-top: .5mm; }
+  .formula { font-family: "Cambria Math", "Times New Roman", serif; font-size: 10pt; text-align: center; margin: 1.5mm 0; }
+  .tag { display:inline-block; font-size:7.5pt; padding:0 1.5mm; border-radius:2px; background:#e0e7ff; color:#3730a3; margin-right:1mm; }
+  .hl { color: var(--acc); font-weight: 700; }
+  .bad { color: var(--warn); font-weight: 700; }
+  ul { margin: 1mm 0 1.6mm; padding-left: 5mm; }
+  li { margin: .4mm 0; }
+  .small { font-size: 8.2pt; }
+  .header { display:flex; justify-content:space-between; align-items:baseline; border-bottom: 2.5px solid var(--acc); padding-bottom: 1.5mm; margin-bottom: 2mm; }
+  .header .t { font-size: 14pt; font-weight: 700; }
+  .header .s { font-size: 8.5pt; color: var(--muted); }
+  .fill { color: #b45309; background: #fef3c7; padding: 0 1mm; }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  table, figure, .box { break-inside: avoid; page-break-inside: avoid; }
+  .card { font-size: 8.75pt; line-height: 1.5; }
+  .card h2 { font-size: 10.5pt; margin: 2.6mm 0 1.2mm; }
+  .card table { font-size: 8pt; margin: 1mm 0 1.4mm; }
+  .card th, .card td { padding: .8mm 1.4mm; }
+  .card ul { margin: .6mm 0 1mm; }
+  .card .box { padding: 1.5mm 2.5mm; margin: 1.4mm 0; }
+  .card code { font-size: 7.6pt; }
+</style>
+</head>
+<body>
+
+<!-- ======================= 作品说明单（第 1—2 页，连续排版） ======================= -->
+<section class="page card">
+  <div class="header"><span class="t">SHEIN AI 创新挑战赛 · 作品说明单</span><span class="s">F4 包裹何时到？ · 跨境包裹送达时效承诺</span></div>
+
+  <h2>01 队伍与赛题</h2>
+  <table class="kv">
+    <tr><td>队伍名称</td><td>言出必达</td></tr>
+    <tr><td>所选赛题</td><td>F4 包裹何时到？（全球智能履约赛道 · 客观预测）</td></tr>
+    <tr><td>成员人数</td><td>1 人</td></tr>
+    <tr><td>成员分工</td><td>王岳行：模型设计与训练、方案验证、文档撰写</td></tr>
+  </table>
+
+  <h2>02 一句话概述</h2>
+  <p>预测每个包裹的<b>时效分布</b>，再<b>按罚分规则</b>逐服务商定承诺并预留漂移余量；迁移验证严格版得分从 ~250 降到 ~80。</p>
+
+  <h2>03 我们理解的业务问题</h2>
+  <ul>
+    <li><b>目标不是“预测准”，而是“承诺快且守得住”</b>：ME 只看全体平均承诺与平均实际之差；只要守约，平均承诺必然高于平均实际，所以本题等价于<b>在每家服务商的准时率/严重超时约束下，让平均承诺最小</b>。</li>
+    <li><b>严格版的“晚到一天以上 ≤3%”比“准时率 ≥90%”更紧</b>：按服务商常数承诺时，要把准时率抬到 ~95% 才能压住长尾；长尾（清关、航班延误）决定成败。</li>
+    <li><b>罚分按服务商等权，ME 按包裹数加权</b>：最大的服务商占 50.3%，最小的仅 0.43%——给小服务商多留余量几乎不花平均承诺，大服务商则要精打细算；罚分是线性软约束，大服务商在极端长尾上“小幅超限”有时比硬守更划算。</li>
+    <li><b>时效会漂移、会有新线路</b>：同一渠道一周内头程+清关可变慢 20%+；测试集 LSP_0001 有一半以上包裹走训练集几乎没见过的新线路（陷阱）。</li>
+  </ul>
+  <p class="small">放弃的方向：不对单个包裹追求点预测精度（MAE/MAPE 不在评分里）；不使用任何决策时点之后的环节信息（时间戳只做历史统计）；不使用外部数据。</p>
+
+  <h2>04 方法与技术路线</h2>
+  <p><b>① 预测层</b>：预测“流入→签收”的剩余时长 r（支付→流入的 lag 已知，T = lag + r̂），LightGBM 分位数回归 11 个分位点；特征为包裹属性、流入时段、lag 和<b>近况特征</b>（最近 3/7 天同渠道/同服务商/同仓同机场的时效偏离，训练时模拟 0–9 天信息滞后，与测试一致）。<b>② 新线路兜底</b>：训练窗口内样本不足 300 的渠道，改用不含渠道/服务商身份的“同行线路”模型，并经留渠道验证确定保险系数。<b>③ 决策层</b>：以模型 P90 为尺度、校准窗口真实残差为形状（按服务商×模型预测的尾部厚度分桶）构造经验条件分布；对每家服务商求解 <i>min T − λ·P(准时) − μ·P(不晚到一天)</i>，(λ, μ) 通过最小化“测试集平均承诺 × 包裹占比 + 漂移情景下的期望罚分”选出，罚分直接按赛题公式计算。<b>AI 的作用</b>：Claude Code 承担代码编写、实验执行与报告初稿，人负责赛题理解把关、实验设计决策与结果复核（详见《AI 协作记录》）。</p>
+  <h2>05 关键结果</h2>
+  <table>
+    <tr><th style="width:28%">指标（严格版 A，越低越好）</th><th style="width:22%">基线或对照</th><th style="width:20%">本方案</th><th>怎么得到</th></tr>
+    $KEY_RESULTS_ROWS$
+  </table>
+  <p class="small">验证协议：三个时间切分折（切分点 8/25、9/3、9/12，各预测其后 9 天支付的包裹）；训练侧只用切分前支付、且在切分后 45 天内签收的标签（与测试时“标签观察到 11/5，距 9/21 约 45 天”的信息量对齐），验证真值用完整标签。迁移验证另用每 3 天一个切分点（8/22–9/18），构成 5 对完整 + 2 对不完整的“上一窗口定参 → 下一窗口打分”。</p>
+
+  <h2>06 如何复现</h2>
+  <table class="kv">
+    <tr><td>运行环境</td><td>Windows 11 / 任意 64 位系统；Python 3.13；polars 2.1、lightgbm 4.7、numpy 2.5、pandas 3.1、matplotlib 3.11（见 requirements.txt）；内存 ≥32 GB；无需 GPU</td></tr>
+    <tr><td>运行命令</td><td class="small">在项目根目录：<br>
+      <code>pip install -r requirements.txt</code><br>
+      <code>python src/00_convert.py F4_包裹何时到_资料包 work</code>（CSV→parquet，约 1 分钟）<br>
+      <code>cd src</code>；<code>python train_mq.py 2026-09-12</code>（校准窗口 9/12–20 的“当时模型”，约 20 分钟）<br>
+      <code>python train_mq.py test</code>（测试集模型，约 20 分钟）；<code>python ens_pred.py 2026-09-12 test</code>（P90/P97 再训 2 个种子，约 30 分钟）<br>
+      <code>python final.py --skip-train</code>（兜底 + 决策层，约 15 分钟）→ <code>outputs/submission.csv</code>；参数见 <code>config/final_cfg.json</code><br>
+      确定性训练（LightGBM deterministic、seed=42，采样 seed 固定）：干净目录两次独立运行的提交文件逐位一致；12 线程 CPU 约 2 小时</td></tr>
+    <tr><td>成果位置</td><td>结果文件 <code>outputs/submission.csv</code>；代码 <code>src/</code>；实验日志 <code>docs/实验记录.md</code>；代码仓库 <code>https://github.com/Greatlovers/shein-f4-delivery-promise</code></td></tr>
+    <tr><td>限制</td><td>无外部数据、无需联网（除安装依赖）；单机 CPU 即可</td></tr>
+  </table>
+
+  <h2>07 给评委的一页看点</h2>
+  <div class="box">
+    <b>核心结论</b>：$HIGHLIGHT_1$
+  </div>
+  <ul>
+    <li><b>最有说服力的证据</b>：$HIGHLIGHT_2$</li>
+    <li><b>不是钻指标空子</b>：我们给优化器开放了“对极难预测的包裹给接近 0 的承诺”（牺牲 3% 严重超时额度）的选项，它几乎不用（事后最优得分变化 &lt;0.01）——严重超时额度已被自然长尾占满，最优解靠的是“按难度分层收保险费”。</li>
+    <li><b>陷阱识别</b>：LSP_0001 测试包裹 56% 走训练集几乎没见过的新线路。按同行线路的时效分布推演，用服务商 P90 常数或主模型 P90 级承诺，LSP_0001 将罚 38–85h；我们用同行线路兜底模型 + 留渠道验证定出的保险系数，预期罚分≈0，代价仅 $NEWLINE_COST$h 平均承诺。</li>
+    <li><b>业务价值</b>：同样守住每家服务商的服务标准，平均承诺比“按服务商定一个常数承诺”（即使事后选到最优常数，三折 108–113）短约 35 小时（≈1.5 天）；λ、μ 还给出每家服务商“准时率每提升 1pp 要多承诺几小时”的价格，可直接用于 SLA 谈判与分单。</li>
+    <li><b>最值得追问</b>：测试期（9/21–29）含中秋、紧邻国庆——测试集 9/25 支付的包裹“支付→流入”P90 已从平时周五的 ~17h 升到 27.5h（这部分已知、已计入承诺）；流入后头程/清关是否变慢无法从训练集验证，由漂移情景 σ=$SIGMA$ 覆盖，若整体变慢超过 ~$SIGMA_PCT$%，大服务商仍可能超限。</li>
+  </ul>
+
+  <h2>08 局限与风险</h2>
+  <ul class="small">
+    <li>漂移余量只基于 8 月下旬—9 月中旬的 7 对（彼此重叠的）迁移窗口估计；国庆、旺季等系统性变化无法在训练集中验证。</li>
+    <li>新线路的保险系数来自“留渠道验证”的模拟，真实新线路的爬坡期（如开线积压）可能更慢。</li>
+    <li>测试集真值若与训练集一样只含 90 天内已签收包裹，极慢包裹被排除会让实际准时率略高于我们的估计（对我们有利）。</li>
+    <li>落地前需要：按天滚动重训与重校准、漂移监控告警（近 3 天偏离超阈值时自动加保险）、新线路冷启动流程。</li>
+  </ul>
+
+  <h2>09 AI 工具与来源声明</h2>
+  <table>
+    <tr><th>AI 工具 / 开源代码 / 外部数据</th><th>用在哪里</th><th>来源或许可证</th></tr>
+    <tr><td>Claude Code（Anthropic，模型 Claude Opus 5.5）</td><td>数据分析、代码编写、实验执行、报告初稿</td><td>商业服务</td></tr>
+    <tr><td>LightGBM / Polars / NumPy / pandas / matplotlib</td><td>建模、数据处理、绘图</td><td>MIT / MIT / BSD / BSD / PSF</td></tr>
+    <tr><td>外部数据</td><td colspan="2">无</td></tr>
+  </table>
+</section>
+
+<!-- ======================= 正文 第 3 页 ======================= -->
+<section class="page">
+  <h1>F4 包裹何时到？——方案报告</h1>
+  <p class="sub">“预测条件分布 + 按评分规则做决策”的两层方案 · 时间切分验证 · 漂移稳健</p>
+
+  <h2>一、把评分公式翻译成决策问题</h2>
+  <p>记包裹 i 的承诺为 T<sub>i</sub>、实际为 y<sub>i</sub>，服务商 g 的包裹占比为 w<sub>g</sub>。只要守约（多数包裹 y ≤ T），一定有 mean(T) &gt; mean(y)，于是</p>
+  <div class="formula">A = mean(T) − mean(y) + 5·Σ<sub>g</sub> max(0, 90 − r<sub>g</sub>) + 5·Σ<sub>g</sub> max(0, s<sub>g</sub> − 3)</div>
+  <p>mean(y) 与决策无关，mean(T) = Σ<sub>g</sub> w<sub>g</sub>·mean<sub>g</sub>(T)。因此<b>评分在服务商之间完全可分</b>，每家服务商独立求解：</p>
+  <div class="formula">min<sub>T</sub>&nbsp; w<sub>g</sub>·mean<sub>g</sub>(T) + 5·max(0, 90 − r<sub>g</sub>(T)) + 5·max(0, s<sub>g</sub>(T) − 3)</div>
+  <p>由此得到四个直接影响方案的判断：</p>
+  <table>
+    <tr><th style="width:26%">观察</th><th>证据</th><th style="width:30%">方案上的含义</th></tr>
+    <tr><td>① 本题是“约束下最小化平均承诺”，不是点预测</td><td>MAE 类指标不在评分里；ME 是全体均值之差</td><td>需要每个包裹的<b>条件分布</b>，而不是一个点</td></tr>
+    <tr><td>② 严重超时 3% 是最紧约束</td><td>服务商常数承诺的事后最优：准时率被抬到 92–97% 才能把严重超时压到 3%（三折得分 108–113）</td><td>决策必须同时看 P90 和 P97–P99.5 的长尾</td></tr>
+    <tr><td>③ 杠杆不对称</td><td>图 1：LSP_0006 占 50.3%，LSP_0008 仅 0.43%，但罚分等权</td><td>多给小服务商 1pp 准时率几乎免费；大服务商要精打细算，甚至可“小幅超限”</td></tr>
+    <tr><td>④ 罚分是线性软约束</td><td>对 LSP_0006，把严重超时从 3.8% 压到 3% 的平均承诺代价 &gt; 4h（即 &gt;5h/pp）</td><td>用“期望罚分”而非硬约束做优化</td></tr>
+  </table>
+  <figure><img src="fig/fig_share.png"><figcaption>图 1　测试集各服务商的包裹占比（决定 ME 权重）与罚分权重（每家相同）的不对称</figcaption></figure>
+  <div class="box"><b>关于“牺牲部分包裹”</b>：理论上可以对 3% 的包裹给极小的承诺来压低平均承诺（它们反正算严重超时）。我们把这个选项放进了优化器（见第四节的兜底候选），但在三个验证折上优化器几乎不选它——严重超时额度已被自然长尾占满，牺牲一个包裹就得在别处多付保险。最终提交中不存在“不合理的极小承诺”，最小承诺为 $MIN_T$ 小时。</div>
+</section>
+
+<!-- ======================= 第 4 页 数据洞察 ======================= -->
+<section class="page">
+  <h2>二、数据洞察：漂移、长尾与新线路</h2>
+  <p><b>数据规模</b>：训练 5,267,074 件（8/1–9/20 支付），测试 911,415 件（9/21–29 支付）；8 家服务商、239 个渠道、9 个发货仓。时效均值 174h、P90 258h、P99 389h，长尾很重。</p>
+  <figure><img src="fig/fig_trend.png"><figcaption>图 2　按支付日的时效：8 月初到 9 月整体变快约 10%，但单个服务商 P90 的日间波动可达 ±20%（如 LSP_0007 在 9/12 后变慢）</figcaption></figure>
+  <ul>
+    <li><b>漂移以“窗口内冲击”为主</b>：拆解环节后发现 9 月中旬 LSP_0007 的变慢来自头程+清关（某渠道中段耗时从 ~82h 升到 ~100h+），发生在验证窗口内部，事前不可见。“上一窗口校准→下一窗口”的所需缩放系数在折间变化 3–20%。→ 决策层必须对漂移稳健（第四节）。</li>
+    <li><b>lag（支付→流入）已知且差异大</b>：周末支付的 lag 均值 ~9.5h、工作日 ~6.5h，个别 &gt;100h。我们预测流入后的剩余时长 r，承诺 T = lag + r̂，lag 部分零误差。</li>
+    <li><b>标签的观察期</b>：训练集在 11/5 整理，9/20 支付的包裹只能观察到 45 天内签收者。测试时可用的正是这样的数据，所以验证时我们让训练侧标签也只观察到“切分点 + 45 天”，与测试的信息量严格对齐（比只用切分点前签收的标签更贴近测试，又不偷看验证期）。</li>
+  </ul>
+  <figure><img src="fig/fig_newline.png"><figcaption>图 3　LSP_0001 新线路：测试期 9/23 起每日 1,800+ 件（左）；训练集仅 19 件，总时效 ~275h，但慢在“流入前积压”（lag 57–147h），流入后的剩余时长与同仓同模式的同行线路接近（右）</figcaption></figure>
+  <div class="box warn"><b>陷阱：LSP_0001 的新线路</b>。测试中 LSP_0001 的 20,353 件里有 11,347 件（56%）走新渠道 CH_0051/CH_0053（模式 MC_0003、运营类型 OT_0002、仓 WH_0005），而 LSP_0001 历史上只做 MC_0001 老渠道（均值 129h）。这 1.1 万件没有任何可校准的历史：训练集的 19 件总时效 ~275h 是开线积压（lag 57–147h）造成的，测试期 lag 已恢复到 0.7h，真正要估的是“流入后剩余时长”——可以借同仓、同模式、同机场的同行线路来估。按同行线路分布推演：用服务商 P90 常数，LSP_0001 整体准时率 86.6%、严重超时 7.3%（罚 ~38h）；用主模型的 P90 级承诺则为 80.4% / 10.4%（罚 ~85h）。</div>
+</section>
+
+<!-- ======================= 第 5 页 预测层 ======================= -->
+<section class="page">
+  <h2>三、方案总览与预测层</h2>
+  $PIPELINE_SVG$
+  <h3>3.1 条件分位数模型</h3>
+  <ul>
+    <li><b>目标</b>：r = 签收 − 流入（小时），在对数尺度上做 LightGBM 分位数回归，τ ∈ {0.5, 0.7, 0.8, 0.85, 0.9, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995}，每个 τ 一个模型（400 轮，255 叶，最小叶 400）。训练集取切分前 35 天支付的已签收包裹（约 350 万）。</li>
+    <li><b>决策时点特征</b>：渠道、服务商、仓、模式、运营类型、业务类型、路由、始发/目的机场、合包、省份等类别；重量、件数；lag、支付与流入的星期/小时、流入“周内小时”（对齐航班班期）。</li>
+    <li><b>近况特征（nowcast）</b>：对每个包裹，取其信息时点前最近 3/7 天已签收包裹在渠道、服务商、仓×机场×模式三个层级上的 log 时效、头程中段、仓内时长相对 28 天基线的偏离，以及 28 天基线水平。测试包裹的信息时点是 9/21（滞后 0–9 天），训练包裹则以哈希随机滞后 U[0, 9) 天构造——模型因此学到“近况信息随滞后衰减”的规律，训练与测试的信息结构一致。</li>
+    <li><b>没有采用的</b>：城市级尾程统计、渠道环节分位数等“历史统计”特征（留一周计算防泄漏后无增益，三折事后得分 67.8/66.8/71.1 vs 67.8/63.9/69.4，弃用）；环节时间戳从不作为单包裹特征。</li>
+  </ul>
+  <figure><img src="fig/fig_imp.png" style="width:92%"><figcaption>图 3b　q0.9 模型的特征重要性（增益占比，9/12 折）。渠道与目的省份之外，“流入周内小时”排名靠前——它对齐的是仓内波次与干线航班班期；近况特征中“28 天基线水平”贡献最大</figcaption></figure>
+  <h3>3.2 稀有/新渠道的“同行线路”兜底模型</h3>
+  <p>训练窗口内样本不足 300 的渠道（测试中 $RARE_N$ 件，主要是 LSP_0001 新线路和 LSP_0006 的 CH_0218）不信任渠道身份，改用去掉渠道、服务商 ID 的同一组特征训练的兜底分位数模型（仓×模式×机场×路由×省份×时段等可迁移属性）。<b>留渠道验证</b>：在 9/12 折把 12 个 MC_0003 渠道整体从训练中拿掉，兜底模型在这些“没见过的渠道”上 $LOCO_TEXT$。据此 LSP_0001 新线路取兜底 P$NEWLINE_TAU_PCT$ × $NEWLINE_MULT$；其余稀有渠道只占各自服务商 &lt;3%，取兜底 P99。</p>
+</section>
+
+<!-- ======================= 第 6 页 决策层 ======================= -->
+<section class="page">
+  <h2>四、决策层：把分布变成承诺</h2>
+  <h3>4.1 经验条件分布：模型给尺度，数据给形状</h3>
+  <p>直接用 11 个分位数插值成逐包裹分布时，P97–P99.5 的尾部模型噪声较大：在 9/12 折上，逐包裹尾部分布 + 拉格朗日的事后得分为 68.79，反而不如“P90 × 服务商系数”的简单做法（67.2）。因此我们改为半参数结构：</p>
+  <div class="formula">log r<sub>i</sub> = log P90<sub>i</sub> + e<sub>i</sub>,&nbsp;&nbsp; e<sub>i</sub> ~ G<sub>g,b(i)</sub></div>
+  <p>G<sub>g,b</sub> 是校准窗口里真实残差的经验分布，按服务商 g 与“模型预测的尾部厚度”log(P97/P90) 的五分位桶 b 分组——既保留模型对“哪类包裹尾巴更长”的判断，又让形状由真实数据校准。</p>
+  <h3>4.2 拉格朗日分配：按难度分层收保险费</h3>
+  <p>对每个包裹，候选承诺取 T<sub>k</sub> = lag + P90·e<sup>z<sub>k</sub></sup>（z<sub>k</sub> 为 G 的 43 个分位点，另可选一个兜底极小承诺），其准时概率 a<sub>k</sub> = G(z<sub>k</sub>)、不晚到一天的概率 b<sub>k</sub> = G(log(e<sup>z<sub>k</sub></sup> + 24/P90))。服务商 g 内统一一对价格 (λ<sub>g</sub>, μ<sub>g</sub>)：</p>
+  <div class="formula">T<sub>i</sub> = argmin<sub>k</sub> &nbsp; T<sub>k</sub> − λ<sub>g</sub>·a<sub>k</sub> − μ<sub>g</sub>·b<sub>k</sub></div>
+  <p>这是“平均承诺最小，准时率与不严重超时率达标”的对偶解：λ、μ 是每 1 个百分点准时率/不严重超时率的“影子价格”（小时）。效果是<b>短时效件</b>（P90 小，24h 缓冲相对大）只需略高于 P90 就能保证不严重超时，<b>长时效、长尾件</b>则按比例多加保险；同一服务商内，保险费花在边际收益最高的包裹上。</p>
+  <h3>4.3 稳健选参：期望罚分 + 漂移情景</h3>
+  <div class="formula">(λ<sub>g</sub>, μ<sub>g</sub>) = argmin &nbsp; w<sub>g</sub>·mean<sub>test,g</sub>(T) + 5·(1/J)·Σ<sub>j</sub> E<sub>δ</sub>[ max(0, 90 − r<sub>g,j</sub>(δ)) + max(0, s<sub>g,j</sub>(δ) − 3) ]</div>
+  <ul>
+    <li><b>成本项用测试集自己的预测计算</b>（测试特征已知），罚分项在校准窗口（“当时”的模型预测 + 真实时效）上计算，相当于把“模型在下一个窗口会犯的错”当作情景。框架支持 J 个窗口加权；5 对迁移验证表明<b>只用最近一个窗口（9/12–20，J=1）最好</b>——合并更早窗口、加入更新鲜的短窗口或细分残差形状，都会让决策层对最近的冲击反应变慢。</li>
+    <li><b>漂移情景</b> δ ~ N(0, σ²)：把窗口内剩余时长整体乘 e<sup>δ</sup>，模拟“下个窗口整体快/慢”。σ 由迁移验证选定（第六节），最终 σ = $SIGMA$。</li>
+    <li>w<sub>g</sub> 取测试集真实占比：小服务商自动多留余量，大服务商自动收紧——这正是观察③的定量版本。</li>
+  </ul>
+  <table>
+    <tr><th>服务商</th><th class="num">测试占比</th><th class="num">λ（h/准时）</th><th class="num">μ（h/不严重超时）</th><th class="num">平均承诺 h</th><th class="num">校准窗口(9/12–20) 准时率 / 严重超时</th></tr>
+    $PARAM_ROWS$
+  </table>
+</section>
+
+<!-- ======================= 第 7 页 迭代 ======================= -->
+<section class="page">
+  <h2>五、从基线到最终方案的迭代</h2>
+  <figure><img src="fig/fig_iter.png"><figcaption>图 4　各版本在 9/12 验证折上的严格版得分 A（对数轴）。灰：无模型基线；蓝：模型/决策层的同窗事后最优（衡量锐度，不可实现）；绿：可实现的迁移评估（与测试流程一致）</figcaption></figure>
+  <table class="small">
+    <tr><th style="width:4%">#</th><th style="width:30%">版本</th><th class="num">8/25</th><th class="num">9/3</th><th class="num">9/12</th><th>为什么这样改 / 结论</th></tr>
+    $ITER_ROWS$
+  </table>
+</section>
+
+<!-- ======================= 第 8 页 稳健性 ======================= -->
+<section class="page">
+  <h2>六、稳健性验证</h2>
+  <div class="grid2">
+    <div>
+      <figure><img src="fig/fig_sigma.png"><figcaption>图 5　漂移余量 σ 的迁移验证：用之前窗口选参，在下一窗口算真实得分。细线为各目标窗口（虚线为不完整窗口），粗线为 5 对平均，红虚线为采用值</figcaption></figure>
+    </div>
+    <div>
+      <h3>6.1 迁移评估（与测试流程一致）</h3>
+      <p class="small">$TRANSFER_TEXT$</p>
+    </div>
+  </div>
+  <table class="small">
+    <tr><th>配置（目标窗口 →）</th><th class="num">8/31</th><th class="num">9/3</th><th class="num">9/6</th><th class="num">9/9</th><th class="num">9/12</th><th class="num">5 对平均</th><th class="num">9/15*</th><th class="num">9/18*</th></tr>
+    $TRANSFER_ROWS$
+  </table>
+  <h3>6.2 新线路的风险预算</h3>
+  <p class="small">$NEWLINE_TEXT$</p>
+  <h3>6.3 其他检查</h3>
+  <ul class="small">
+    <li><b>防泄漏</b>：所有特征只用 issue_time 时点可知的信息；近况/历史统计只来自信息时点之前支付且在“观察期”内签收的包裹；环节时间戳从不作为单包裹输入。</li>
+    <li><b>工程正确性</b>：城市编码跨省重复（5,131 个），曾导致拼接后行数膨胀（350 万→977 万），发现后改用（省, 市）联合键并对每次拼接加行数断言。</li>
+    <li><b>提交校验</b>：911,415 行、pkg_no 唯一且与测试集一致、pred_hours 全为有限正数；用官方 score.py 在验证折上复核得分一致。</li>
+    <li><b>复现核验</b>：在只含代码与资料包的干净目录按 README 从原始 CSV 重跑，提交文件与原目录逐位一致（SHA-256 相同）。为此修正了两处隐性的非确定性：LightGBM 多线程训练（开 deterministic）与并行分组求和的浮点顺序（改为顺序累加，差异仅 1e-14 却足以改变树的分裂）。</li>
+  </ul>
+</section>
+
+<!-- ======================= 第 9 页 测试集解读与落地 ======================= -->
+<section class="page">
+  <h2>七、测试集承诺解读与业务落地</h2>
+  <figure><img src="fig/fig_test.png"><figcaption>图 6　左：最终承诺（减去已知 lag）与模型 P90 的关系；右：各服务商平均承诺</figcaption></figure>
+  <p>$TEST_TEXT$</p>
+  <h3>落地建议</h3>
+  <table class="small">
+    <tr><th style="width:22%">环节</th><th>做法</th></tr>
+    <tr><td>每日滚动</td><td>每天用最近 35 天已签收数据重训分位数模型；用最近一个 9 天窗口（“当时模型”的预测 + 真实时效）重估经验残差与 (λ, μ)。全流程单机 CPU 约 1 小时。</td></tr>
+    <tr><td>漂移告警</td><td>监控近 3 天各服务商实际准时率与模型预期的偏离；超过 2σ 时临时提高该服务商的 μ（多收保险费），并排查头程/清关环节。</td></tr>
+    <tr><td>新线路冷启动</td><td>新渠道上线首两周按“同行线路兜底 P99.5 × 保险系数”承诺；积累 300 件签收后切回主模型。开线积压期（lag 异常大）单独监控。</td></tr>
+    <tr><td>用户体验</td><td>承诺对外展示可取整到天；对长尾风险高的包裹（P97/P90 大）在下单页提示“可能受清关影响”。</td></tr>
+    <tr><td>服务商管理</td><td>λ、μ 就是每个服务商“准时率每提升 1pp 需要多承诺多少小时”的价格，可直接用于和服务商谈 SLA：长尾越重，用户承诺越慢、转化越低。</td></tr>
+  </table>
+</section>
+
+<!-- ======================= 第 10 页 局限与复现 ======================= -->
+<section class="page">
+  <h2>八、局限、风险与后续</h2>
+  <ul>
+    <li><b>漂移估计样本少</b>：7 对迁移窗口彼此重叠、都在 8 月下旬—9 月中旬，σ 的选择仍有不确定性；测试期临近国庆，若头程整体变慢超出情景范围，大服务商（LSP_0006/0002/0007）可能小幅超限（每 1pp 罚 5h）。</li>
+    <li><b>严重超时额度被自然长尾占满</b>：清关扣货、航班取消等极端事件在验证窗口里出现频率不同，导致各窗口所需余量波动；更细的“长尾成因”建模（如机场×日期的拥堵信号）是后续最有价值的方向。</li>
+    <li><b>新线路</b>：保险系数来自留渠道模拟；若新线路仍处开线爬坡，可能更慢。我们为其付出约 $NEWLINE_COST$h 平均承诺的保险，属于有意为之。</li>
+    <li><b>评分口径假设</b>：假设测试真值与训练集口径一致（已妥投、90 天内）；若测试真值观察期更短，实际准时率会更高（对本方案有利）。</li>
+  </ul>
+  <h2>九、复现与文件清单</h2>
+  <table class="small">
+    <tr><th style="width:30%">文件</th><th>作用</th></tr>
+    <tr><td><code>src/00_convert.py</code></td><td>CSV → parquet</td></tr>
+    <tr><td><code>src/common.py, feats.py, recency.py</code></td><td>读数、决策时点特征、近况特征（含信息滞后模拟）、官方公式评分</td></tr>
+    <tr><td><code>src/model.py, train_mq.py</code></td><td>时间切分折构建（45 天观察期对齐）、LightGBM 多分位数训练</td></tr>
+    <tr><td><code>src/fallback.py</code></td><td>稀有/新渠道兜底模型、留渠道验证</td></tr>
+    <tr><td><code>src/policy.py, policy_emp.py</code></td><td>条件分布、经验残差形状、拉格朗日分配、期望罚分选参</td></tr>
+    <tr><td><code>src/ens_pred.py, final.py</code></td><td>P90/P97 三种子平均；最终流水线 → <code>outputs/submission.csv</code>（参数 <code>config/final_cfg.json</code>）</td></tr>
+    <tr><td><code>src/b0_baselines.py, e1–e9_*.py</code></td><td>基线与两轮实验（e6–e9 为第二轮：加密切分点、5+2 对迁移验证、预测层改进尝试；日志 <code>work/*.log</code>、<code>work/e7.jsonl</code>，汇总 <code>docs/实验记录.md</code>）</td></tr>
+  </table>
+  <p class="small">本报告第 1—2 页为官网《作品说明单》；AI 使用细节见单独提交的《AI 协作记录》。</p>
+</section>
+</body>
+</html>

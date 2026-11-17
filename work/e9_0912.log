@@ -1,0 +1,92 @@
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 base     fit  239s  pinball=0.04869  cov=0.846  oracle A=67.02 B=66.85 ME=66.85 (meanT=236.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+Traceback (most recent call last):
+  File "D:\qoder\shein-f4\src\e9_model.py", line 55, in <module>
+    run(t0, v)
+    ~~~^^^^^^^
+  File "D:\qoder\shein-f4\src\e9_model.py", line 42, in run
+    m = fit_quantile(tr, 0.9, feats=feats, rounds=rounds, weight=w, params=params)
+  File "D:\qoder\shein-f4\src\model.py", line 68, in fit_quantile
+    m = lgb.train(p, ds, num_boost_round=rounds)
+  File "~\AppData\Local\Programs\Python\Python313\Lib\site-packages\lightgbm\engine.py", line 321, in train
+    booster.update(fobj=fobj)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\site-packages\lightgbm\basic.py", line 4265, in update
+    _safe_call(
+    ~~~~~~~~~~^
+        _LIB.LGBM_BoosterUpdateOneIter(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        )
+        ^
+    )
+    ^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\site-packages\lightgbm\basic.py", line 297, in _safe_call
+    raise LightGBMError(_LIB.LGBM_GetLastError().decode("utf-8"))
+lightgbm.basic.LightGBMError: bad allocation
+Traceback (most recent call last):
+  File "D:\qoder\shein-f4\src\e9_model.py", line 61, in <module>
+    run(t0, v)
+    ~~~^^^^^^^
+  File "D:\qoder\shein-f4\src\e9_model.py", line 43, in run
+    age = (pl.lit(t0) - tr["pay_time"]).dt.total_seconds().to_numpy() / 86400.0
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\expr\expr.py", line 13040, in __getattr__
+    return getattr_fallback(self, super(), name)
+  File "~\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\_utils\expired.py", line 87, in getattr_fallback
+    raise AttributeError(msg, name=name, obj=obj)
+AttributeError: 'Expr' object has no attribute 'to_numpy'
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 wrecent  fit  634s  pinball=0.04952  cov=0.833  oracle A=67.50 B=67.33 ME=67.33 (meanT=237.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 long     fit  208s  pinball=0.04944  cov=0.837  oracle A=67.26 B=67.09 ME=67.09 (meanT=237.0 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 d49      fit  143s  pinball=0.04905  cov=0.836  oracle A=67.06 B=66.88 ME=66.88 (meanT=236.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 city     fit  268s  pinball=0.04884  cov=0.843  oracle A=67.56 B=67.39 ME=67.39 (meanT=237.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+ical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 r200     fit  107s  pinball=0.04849  cov=0.851  oracle A=67.54 B=67.37 ME=67.37 (meanT=237.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 mdl2000  fit  259s  pinball=0.04895  cov=0.843  oracle A=67.50 B=67.33 ME=67.33 (meanT=237.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 nl63     fit  177s  pinball=0.04860  cov=0.853  oracle A=68.43 B=68.25 ME=68.25 (meanT=238.2 meanY=170.0) pen_on=0.00 pen_sev=0.18
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+09-12 ens3     fit  728s  pinball=0.04862  cov=0.845  oracle A=66.67 B=66.49 ME=66.49 (meanT=236.5 meanY=170.0) pen_on=0.00 pen_sev=0.18

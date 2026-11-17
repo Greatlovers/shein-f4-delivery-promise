@@ -1,0 +1,20 @@
+# 官方资料包（数据与赛题文件不公开分发）：评委用自己的资料包，按 README 放到 F4_包裹何时到_资料包/ 即可
+F4.zip
+F4_包裹何时到_资料包/
+# 中间缓存：parquet 与模型全部可由 src/ 重新生成；实验日志（*.log、e7.jsonl）保留，作为报告数字的出处
+work/*.parquet
+work/nondet_1116/
+work/*.npy
+work/*.txt
+work/_chrome_profile/
+work/_edge_profile/
+work/pdfpng/
+# 旧版本备份
+outputs/v1_*/
+outputs/test_detail.parquet
+__pycache__/
+*.pyc
+docs/_report_tmp.pdf
+# 队内文档（答辩准备、提交清单），不公开
+docs/答辩准备.md
+docs/提交清单.md

@@ -1,0 +1,117 @@
+latest_s0.04           0831  A=  79.83  ME= 61.92  on= 0.00  sev=17.90
+latest_s0.04           0903  A=  73.43  ME= 71.85  on= 0.00  sev= 1.58
+latest_s0.04           0906  A=  76.58  ME= 76.58  on= 0.00  sev= 0.00
+latest_s0.04           0909  A=  81.89  ME= 74.94  on= 0.00  sev= 6.95
+latest_s0.04           0912  A=  92.35  ME= 63.94  on= 8.78  sev=19.63
+latest_s0.05           0831  A=  78.30  ME= 63.70  on= 0.00  sev=14.60
+latest_s0.05           0903  A=  75.95  ME= 75.17  on= 0.00  sev= 0.79
+latest_s0.05           0906  A=  79.98  ME= 79.98  on= 0.00  sev= 0.00
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 254, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 203, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ~~^^^^^^^
+  File "D:\qoder\shein-f4\src\e7_transfer.py", line 124, in run_one
+    p = fit_carrier(cc, ys, ls, ct, float(mt.mean()), deltas, probs, win_w=w)
+  File "D:\qoder\shein-f4\src\policy_emp.py", line 116, in fit_carrier
+    obj, cost = objective(l, m)
+                ~~~~~~~~~^^^^^^
+  File "D:\qoder\shein-f4\src\policy_emp.py", line 98, in objective
+    cost = w_g * choose(*cands_tgt, lam, mu).mean()
+                 ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\qoder\shein-f4\src\policy_emp.py", line 70, in choose
+    k = np.argmin(T - lam * A - mu * B, axis=1)
+                  ~~~~~~~~~~~~^~~~~~~~
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 32.8 MiB for an array with shape (100000, 43) and data type float64
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\qoder\shein-f4\src\e7_transfer.py", line 152, in <module>
+    main(args, suf=suf)
+    ~~~~^^^^^^^^^^^^^^^
+  File "D:\qoder\shein-f4\src\e7_transfer.py", line 137, in main
+    for r in ex.map(run_one, jobs):
+             ~~~~~~^^^^^^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 32.8 MiB for an array with shape (100000, 43) and data type float64
+52 ��������������� 8��
+latest_s0.05           0909  A=  82.81  ME= 77.05  on= 0.00  sev= 5.75
+latest_s0.05           0912  A=  80.07  ME= 66.15  on= 1.30  sev=12.62
+latest_s0.06           0831  A=  77.76  ME= 66.10  on= 0.00  sev=11.66
+latest_s0.06           0903  A=  77.35  ME= 77.35  on= 0.00  sev= 0.00
+latest_s0.06           0906  A=  82.74  ME= 82.74  on= 0.00  sev= 0.00
+latest_s0.06           0909  A=  84.26  ME= 79.23  on= 0.00  sev= 5.03
+latest_s0.06           0912  A=  78.10  ME= 68.40  on= 0.00  sev= 9.69
+latest_s0.07           0831  A=  76.87  ME= 69.71  on= 0.00  sev= 7.16
+latest_s0.07           0903  A=  80.02  ME= 80.02  on= 0.00  sev= 0.00
+latest_s0.07           0906  A=  84.96  ME= 84.96  on= 0.00  sev= 0.00
+latest_s0.07           0909  A=  85.70  ME= 81.64  on= 0.00  sev= 4.06
+latest_s0.07           0912  A=  78.65  ME= 70.66  on= 0.00  sev= 7.98
+latest_s0.08           0831  A=  76.41  ME= 73.80  on= 0.00  sev= 2.61
+latest_s0.08           0903  A=  82.73  ME= 82.73  on= 0.00  sev= 0.00
+latest_s0.08           0906  A=  87.64  ME= 87.64  on= 0.00  sev= 0.00
+latest_s0.08           0909  A=  86.81  ME= 85.11  on= 0.00  sev= 1.70
+latest_s0.08           0912  A=  81.62  ME= 74.88  on= 0.00  sev= 6.73
+gap3_s0.06             0831  A=  78.08  ME= 66.48  on= 0.00  sev=11.60
+gap3_s0.06             0903  A=  76.66  ME= 76.37  on= 0.00  sev= 0.29
+gap3_s0.06             0906  A=  80.90  ME= 80.90  on= 0.00  sev= 0.00
+gap3_s0.06             0909  A=  83.20  ME= 79.28  on= 0.00  sev= 3.92
+gap3_s0.06             0912  A=  85.76  ME= 68.12  on= 3.85  sev=13.79
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "~\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "~\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: Can't get local object 'cal_pool.<locals>.f'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\qoder\shein-f4\src\e7_transfer.py", line 158, in <module>
+    for line in open(WORK / "e7.jsonl", encoding="utf-8"):
+    ^^^^^^^^^^^^^^^
+  File "D:\qoder\shein-f4\src\e7_transfer.py", line 143, in main
+    ct = cands(shape, tgt, mt, nb, refcuts)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "~\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "~\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "~\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: Can't get local object 'cal_pool.<locals>.f'

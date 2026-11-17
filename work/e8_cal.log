@@ -1,0 +1,16 @@
+09-12 特征 10s
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+  09-12 tau=0.9 fit 288s  日历特征增益% {'cl_car_ahead': np.float64(1.4), 'cl_car_now': np.float64(1.0), 'cl_ch_ahead': np.float64(0.8), 'cl_ch_nahead': np.float64(0.7), 'cl_car_nahead': np.float64(0.6), 'cl_ch_now': np.float64(0.5), 'cl_gap': np.float64(0.2)}
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+  09-12 tau=0.97 fit 266s  日历特征增益% {'cl_car_ahead': np.float64(1.7), 'cl_car_now': np.float64(1.4), 'cl_ch_ahead': np.float64(1.0), 'cl_ch_nahead': np.float64(0.8), 'cl_ch_now': np.float64(0.7), 'cl_car_nahead': np.float64(0.7), 'cl_gap': np.float64(0.2)}
+09-03 特征 11s
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN
+[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN

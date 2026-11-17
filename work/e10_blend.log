@@ -1,0 +1,12 @@
+09-12 lgb1       fit     0s  pinball=0.04889  cov=0.843  oracle A=66.99 B=66.81 ME=66.81 (meanT=236.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3       fit     0s  pinball=0.04865  cov=0.844  oracle A=66.81 B=66.63 ME=66.63 (meanT=236.6 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 cb         fit     0s  pinball=0.04918  cov=0.843  oracle A=67.84 B=67.66 ME=67.66 (meanT=237.6 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 xgb        fit     0s  pinball=0.04833  cov=0.856  oracle A=68.03 B=67.85 ME=67.85 (meanT=237.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb1+cb    fit     0s  pinball=0.04852  cov=0.845  oracle A=66.70 B=66.53 ME=66.53 (meanT=236.5 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb1+xgb   fit     0s  pinball=0.04840  cov=0.851  oracle A=67.12 B=66.94 ME=66.94 (meanT=236.9 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3¡Á2+cb  fit     0s  pinball=0.04842  cov=0.846  oracle A=66.50 B=66.33 ME=66.33 (meanT=236.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3+cb    fit     0s  pinball=0.04845  cov=0.846  oracle A=66.62 B=66.44 ME=66.44 (meanT=236.4 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3¡Á2+xgb fit     0s  pinball=0.04839  cov=0.849  oracle A=66.82 B=66.64 ME=66.64 (meanT=236.6 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3+xgb   fit     0s  pinball=0.04832  cov=0.851  oracle A=67.05 B=66.87 ME=66.87 (meanT=236.8 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3+cb+xgb fit     0s  pinball=0.04822  cov=0.851  oracle A=66.69 B=66.52 ME=66.52 (meanT=236.5 meanY=170.0) pen_on=0.00 pen_sev=0.18
+09-12 lgb3¡Á2+cb+xgb fit     0s  pinball=0.04826  cov=0.849  oracle A=66.55 B=66.38 ME=66.38 (meanT=236.3 meanY=170.0) pen_on=0.00 pen_sev=0.18
